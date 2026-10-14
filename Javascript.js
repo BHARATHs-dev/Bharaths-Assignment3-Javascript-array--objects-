@@ -28,62 +28,68 @@
 // console.log(spliced);
 
 //object creation
-const student = {name: "A",dept: "CSE", marks: 80,   gender: "M" ,  
-    name: "B", dept: "CSE", marks: 90, gender: "M" , 
- greet() {console.log(`Hello, my name is ${this.name} and I am from ${this.dept} department.`);} 
-};
-console.log(student.greet());
-student.marks = 85;
+// const student = {name: "A",dept: "CSE", marks: 80,   gender: "M" ,  
+//     name: "B", dept: "CSE", marks: 90, gender: "M" , 
+//  greet() {console.log(`Hello, my name is ${this.name} and I am from ${this.dept} department.`);} 
+// };
+// console.log(student.greet());
+// student.marks = 85;
 
-console.log(student.marks); 
+// console.log(student.marks); 
 
-console.log(student.name);
-console.log(student.marks);
+// console.log(student.name);
+// console.log(student.marks);
 
-delete student.marks;
-console.log(student.marks);
+// delete student.marks;
+// console.log(student.marks);
 
 
-// Task 4 methods 
+// // Task 4 methods 
 
- //1. reduce method
- const numbers = [120,60,899];
- const sum = numbers.reduce((a,b) => a + b);
- console.log(sum); // 1079
+//  //1. reduce method
+//  const numbers = [120,60,899];
+//  const sum = numbers.reduce((a,b) => a + b);
+//  console.log(sum); // 1079
 
-//2. find + ?? method
+// //2. find + ?? method
 
-const students = [
-    { name: "a", dept: "CSE", marks: 80, gender: "M" },
-    { name: "b", dept: "CSE", marks: 90, gender: "M" },
-    { name: "c", dept: "CSE", marks: 75, gender: "M" },
-    { name: "d", dept: "CSE", marks: 40, gender: "M" },
-];
-const kiran = students.find((student) => student.name === "kiran");
-console.log(kiran ? kiran.marks : "not found");  // not found
+// const students = [
+//     { name: "a", dept: "CSE", marks: 80, gender: "M" },
+//     { name: "b", dept: "CSE", marks: 90, gender: "M" },
+//     { name: "c", dept: "CSE", marks: 75, gender: "M" },
+//     { name: "d", dept: "CSE", marks: 40, gender: "M" },
+// ];
+// const kiran = students.find((student) => student.name === "kiran");
+// console.log(kiran ? kiran.marks : "not found");  // not found
 
-//3. closure 
+// //3. closure 
 
-function makeGreeter(greeting) {
-    return function(name) {
-        return greeting + " " + name;
-    };   
-}
-const hello = makeGreeter("hello");
-console.log(hello("kiran")); // hello kiran    
+// function makeGreeter(greeting) {
+//     return function(name) {
+//         return greeting + " " + name;
+//     };   
+// }
+// const hello = makeGreeter("hello");
+// console.log(hello("kiran")); // hello kiran    
 
 
 
 //4. async await
 
-async function fetchData() {
+async function loadUsers() {
+
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users');
-      const data = await response.json();
-      console.log(data);
+    
+    const res =await fetch ("https://jsonplaceholder.typicode.com/users"); 
+    const users =await res.json();
+    users.slice(0, 10).forEach((user) => {
+        console.log(user.name);
+        console.log(user.email);
+    });
+
+    
     } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-  
-  fetchData();
+    
+    console.log("Could not load:", error);
+    }}
+    loadUsers();
